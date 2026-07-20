@@ -1,0 +1,176 @@
+:root {
+  --navy: #1f3864;
+  --gray: #595959;
+  --bg: #f7f8fa;
+  --card: #ffffff;
+  --border: #e2e5ea;
+  --accent: #2563eb;
+  font-family: "Segoe UI", Roboto, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #1a1a1a;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+.navbar {
+  background: var(--navy);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+}
+
+.navbar a {
+  color: white;
+  font-weight: 500;
+  margin-left: 18px;
+}
+
+.navbar .brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+}
+
+.job-card h3 {
+  margin: 0 0 4px;
+  color: var(--navy);
+}
+
+.job-card .company {
+  font-weight: 600;
+  color: #333;
+}
+
+.job-card .meta {
+  color: var(--gray);
+  font-size: 0.9rem;
+  margin: 6px 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.tag {
+  background: #eef2ff;
+  color: var(--accent);
+  font-size: 0.78rem;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+.btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filters input,
+.filters select {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.filters input[type="text"] {
+  flex: 1;
+  min-width: 200px;
+}
+
+.form {
+  max-width: 400px;
+  margin: 40px auto;
+}
+
+.form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.tracker-board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  overflow-x: auto;
+}
+
+.tracker-column h4 {
+  text-align: center;
+  color: var(--navy);
+}
+
+.tracker-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 0.85rem;
+}
+
+.error-text {
+  color: #c0392b;
+  font-size: 0.85rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
