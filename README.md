@@ -1,3 +1,4 @@
+
 # Job Board Aggregator
 
 A full-stack MERN application to search, filter, and track job applications in one place — built to solve a real problem (my own job search) rather than as a tutorial clone.
@@ -102,3 +103,6 @@ job-management endpoints.
 - Add email reminders for `followUpDate`
 - Add a simple admin dashboard UI (currently API-only)
 - Deploy and add real scraped/aggregated listings via a scheduled job
+
+# Job-board-aggregator
+ 60f524b81b866144ee37bc0e04d1d737831496ed
