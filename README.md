@@ -1,108 +1,151 @@
 
-# Job Board Aggregator
+# 💼 Job Board Aggregator
 
-A full-stack MERN application to search, filter, and track job applications in one place — built to solve a real problem (my own job search) rather than as a tutorial clone.
+A full-stack MERN application that helps job seekers search, filter, and track job applications from one platform. This project was built to solve a real-world problem by providing a centralized job portal with authentication, advanced filtering, and an application tracker.
 
-## Features
+---
 
-- Browse job listings with multi-filter search (tech stack, location, experience level, job type, free-text search)
-- JWT-based authentication (register/login)
-- Personal application tracker — save jobs and move them through Saved → Applied → Interview → Rejected → Offer
-- Admin-only endpoints to add/edit/delete job listings
-- Pagination on the job feed
+## 🚀 Features
 
-## Tech Stack
+- 🔍 Search jobs by keyword
+- 📍 Filter by location, tech stack, experience level, and job type
+- 🌍 Browse jobs from multiple locations (Chennai, Bengaluru, Hyderabad, Kochi, Pune, Mumbai, Noida, Gurugram, Remote)
+- 🔐 JWT Authentication (Register & Login)
+- 📌 Save jobs and track application status
+- 📊 Application Tracker (Saved → Applied → Interview → Offer → Rejected)
+- 👨‍💼 Admin-only CRUD operations for job listings
+- 📄 Pagination for efficient job browsing
+- 💾 MongoDB Atlas integration with seeded sample jobs
 
-- **Frontend:** React (Vite), React Router, Axios
-- **Backend:** Node.js, Express
-- **Database:** MongoDB with Mongoose
-- **Auth:** JWT + bcrypt password hashing
+---
 
-## Project Structure
+## 🛠 Tech Stack
 
-```
+### Frontend
+- React.js
+- Vite
+- React Router DOM
+- Axios
+
+### Backend
+- Node.js
+- Express.js
+
+### Database
+- MongoDB Atlas
+- Mongoose
+
+### Authentication
+- JWT (JSON Web Token)
+- bcryptjs
+
+---
+
+## 📂 Project Structure
+
+```text
 job-board-aggregator/
 ├── backend/
-│   ├── config/db.js
-│   ├── models/          User, Job, SavedApplication
-│   ├── middleware/auth.js
-│   ├── routes/           authRoutes, jobRoutes, applicationRoutes
-│   ├── seed.js           sample job listings
+│   ├── config/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── seed.js
 │   └── server.js
-└── frontend/
-    └── src/
-        ├── api/axios.js
-        ├── context/AuthContext.jsx
-        ├── components/    Navbar, JobCard, JobFilters
-        ├── pages/          JobFeed, Login, Register, Tracker
-        └── App.jsx
+│
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── pages/
+│   │   └── App.jsx
+│   └── package.json
+│
+└── README.md
 ```
 
-## Setup
+---
 
-### 1. Backend
+## ⚙️ Setup
+
+### Backend
 
 ```bash
 cd backend
 npm install
-cp .env.example .env
-# edit .env: set MONGO_URI (local MongoDB or a free MongoDB Atlas cluster)
-#            set JWT_SECRET to any long random string
-npm run seed     # populates the database with 12 sample listings
-npm run dev      # starts the API on http://localhost:5000
+npm run seed
+npm run dev
 ```
 
-If you don't have MongoDB installed locally, create a free cluster at
-[mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas) and paste the
-connection string into `MONGO_URI`.
-
-### 2. Frontend
+### Frontend
 
 ```bash
 cd frontend
 npm install
-npm run dev       # starts on http://localhost:5173
+npm run dev
 ```
 
-The Vite dev server proxies `/api` requests to `http://localhost:5000`, so both
-must be running for the app to work locally.
+The frontend runs on:
 
-### 3. Create an admin user (optional)
+```
+http://localhost:5173
+```
 
-Register normally through the UI, then manually update that user's `role`
-field to `"admin"` in MongoDB (via Compass or the Atlas UI) to unlock the
-job-management endpoints.
+The backend runs on:
 
-## Deployment (for your resume link)
+```
+http://localhost:5000
+```
 
-- **Backend:** Render or Railway (free tier) — set the same env vars as `.env`
-- **Frontend:** Vercel or Netlify — set the API base URL to your deployed backend
-- **Database:** MongoDB Atlas free tier
+---
 
-## Key Technical Decisions (interview talking points)
+## 🔑 Environment Variables
 
-1. **Dynamic filter query** (`routes/jobRoutes.js`) — builds a single MongoDB
-   query object by only adding a clause for filters the user actually
-   provided, instead of writing a separate query per filter combination.
-   A compound index on `{ location, experienceLevel, jobType }` and a text
-   index on `{ title, company, description }` back this so it scales as the
-   listing count grows.
-2. **Preventing duplicate tracked jobs** — a unique compound index on
-   `{ user, job }` in `SavedApplication` stops a user from saving the same
-   listing twice at the database level, not just in the UI.
-3. **JWT auth middleware** — `protect` verifies the token and attaches the
-   user to `req.user`; `adminOnly` layers on top for admin-only routes,
-   keeping authorization logic out of individual route handlers.
-4. **Ownership checks on the tracker** — every tracker update/delete query
-   filters by both `_id` and `user`, so a user can never edit or see another
-   user's tracked applications even if they guess an ID.
+Create a `.env` file inside the `backend` folder.
 
-## Next Steps / Ideas to Extend
+```env
+PORT=5000
+MONGO_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=your_secret_key
+JWT_EXPIRES_IN=7d
+```
 
-- Add rate limiting on auth routes
-- Add email reminders for `followUpDate`
-- Add a simple admin dashboard UI (currently API-only)
-- Deploy and add real scraped/aggregated listings via a scheduled job
+---
 
-# Job-board-aggregator
- 60f524b81b866144ee37bc0e04d1d737831496ed
+## ✨ Key Technical Highlights
+
+- Dynamic MongoDB filtering using query parameters
+- Full-text search with MongoDB text indexes
+- JWT-based authentication and protected routes
+- Password hashing using bcryptjs
+- Pagination for scalable job browsing
+- Admin-only job management endpoints
+- Compound MongoDB indexes for optimized filtering
+- Duplicate application prevention using unique indexes
+
+---
+
+## 🚀 Future Enhancements
+
+- AI-powered job recommendations
+- Resume upload
+- Email notifications
+- Company dashboard
+- Bookmark jobs
+- Salary range filter
+- Dark mode
+- Real-time job aggregation
+
+---
+
+## 👨‍💻 Author
+
+**Rithu Rajan**
+
+- GitHub: https://github.com/Rithu-4
+- LinkedIn: https://www.linkedin.com/in/rithu-rajan10
+
+---
+
+⭐ If you found this project useful, please consider giving it a star!
