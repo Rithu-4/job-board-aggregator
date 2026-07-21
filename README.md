@@ -1,4 +1,6 @@
 
+Link :https://job-board-aggregator-d5di.vercel.app/
+
 # 💼 Job Board Aggregator
 
 A full-stack MERN application that helps job seekers search, filter, and track job applications from one platform. This project was built to solve a real-world problem by providing a centralized job portal with authentication, advanced filtering, and an application tracker.
